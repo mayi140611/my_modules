@@ -25,10 +25,18 @@ m.conv1.bias.data.zero_()
 ```
 ### 冻结某层的参数
 ```
-
+for name, param in m.named_parameters():
+    if 'conv2' in name: # 冻结指定层的参数
+        param.requires_grad = False
+    print(f"{name}---{param}")
 ```
 ### save & load
 torch.save(model.state_dict(), "model.pth")
 
 model = NeuralNetwork()
 model.load_state_dict(torch.load("model.pth"))
+
+# Optimizer
+https://pytorch.org/docs/stable/optim.html
+
+Optimizer负责维护优化器的状态及更新参数

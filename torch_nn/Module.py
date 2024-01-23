@@ -3,6 +3,25 @@
 import torch.nn as nn
 import torch.nn.functional as F
 
+class TextSentiment(nn.Module):
+    def __init__(self, vocab_size, embed_dim, num_class):
+        super().__init__()
+        self.embedding = nn.EmbeddingBag(vocab_size, embed_dim, sparse=True)
+        self.fc = nn.Linear(embed_dim, num_class)
+        self.init_weights()
+    # 初始化
+    def init_weights(self):
+        initrange = 0.5
+        self.embedding.weight.data.uniform_(-initrange, initrange)
+        self.fc.weight.data.uniform_(-initrange, initrange)
+        # nn.init.uniform_(self.fc.weight.data, -initrange, initrange)
+        # nn.init.xavier_normal_(self.fc.weight.data)
+        self.fc.bias.data.zero_()
+
+    def forward(self, text, offsets):
+        embedded = self.embedding(text, offsets)
+        return self.fc(embedded)
+    
 class Model(nn.Module):
     def __init__(self):
         super(Model, self).__init__()
