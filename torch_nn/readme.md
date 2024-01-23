@@ -40,3 +40,9 @@ model.load_state_dict(torch.load("model.pth"))
 https://pytorch.org/docs/stable/optim.html
 
 Optimizer负责维护优化器的状态及更新参数
+# [Embedding层](./Embedding.py)
+https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html#torch.nn.Embedding
+
+作用就是给输入的tensor扩充一个维度，如(batch_size, seq_len, token_ids) => (batch_size, seq_len, token_ids, embedding_dim)
+
+在nlp的理解中就是原本一个token是用一个数字表示的，现在改为用一个向量表示，所蕴含的信息更加丰富。
