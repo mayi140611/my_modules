@@ -31,6 +31,12 @@ m = Model()
 # Conv2d(20, 20, kernel_size=(5, 5), stride=(1, 1))
 
 # 获取模型参数
+# for param in m.parameters():
+#     print(param) # 只打印参数
+for name, param in m.named_parameters():
+    if 'conv2' in name: # 冻结指定层的参数
+        param.requires_grad = False
+    print(f"{name}---{param}")
 # print(type(m.conv1.weight)) # <class 'torch.nn.parameter.Parameter'>
 # print(m.conv1.weight)
 # Parameter containing:

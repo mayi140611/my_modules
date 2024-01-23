@@ -17,11 +17,16 @@ m.state_dict() # Returns a dictionary containing references to the whole state o
 for param in model.parameters():
     print(type(param), param.size())
 ### 初始化某层的参数？
+```
 # 权值初始化
 initrange = 0.5
 m.conv1.weight.data.uniform_(-initrange, initrange)
 m.conv1.bias.data.zero_()
-### 冻结某层的参数？
+```
+### 冻结某层的参数
+```
+
+```
 ### save & load
 torch.save(model.state_dict(), "model.pth")
 
