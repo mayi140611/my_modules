@@ -20,7 +20,7 @@ from torch import nn
 
 
 
-# 初始化
+# new
 # embedding = nn.Embedding(10, 3)
 # embedding.weight.data
 # tensor([[ 0.4336,  0.6459, -0.5624],
@@ -62,3 +62,9 @@ embedding = nn.Embedding(3, 4, padding_idx=padding_idx)
 
 # class InternLM2Model(InternLM2PreTrainedModel):
 # self.tok_embeddings = nn.Embedding(config.vocab_size, config.hidden_size, self.padding_idx)
+
+# 参数初始化
+        # elif isinstance(module, nn.Embedding):
+        #     module.weight.data.normal_(mean=0.0, std=std)
+        #     if module.padding_idx is not None:
+        #         module.weight.data[module.padding_idx].zero_()
